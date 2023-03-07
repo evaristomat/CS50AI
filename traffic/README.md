@@ -1,4 +1,4 @@
-# Traffic
+# Traffic 
 
 This project involves building and training a convolutional neural network to classify images of traffic signs. Throughout the project, a variety of techniques and approaches were tried to improve the accuracy of the model.
 
