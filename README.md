@@ -13,7 +13,7 @@ Here's a list of the projects that I have completed so far:
 ## Running the Projects
 To run the projects, you can clone this repository to your local machine:
 
-git clone https://github.com/your-username/cs50ai-projects.git
+git clone https://github.com/evaristomat/cs50ai-projects.git
 
 Each project has its own directory, with a README file that explains how to run the code and what the expected output should be.
 
