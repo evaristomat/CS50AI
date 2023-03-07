@@ -65,14 +65,17 @@ def load_data(data_dir):
     for root, _, files in os.walk(data_dir):
         for file in files:
             if not file.startswith('.'):
-                # Uses OpenCV to read in the image file at the path os.path.join(root, file).
-                image = cv2.imread(os.path.join(root, file))
-                # Resizes the image to the desired siz
-                image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))
-                # appends the image and its corresponding label
-                # (which is the integer representation of the category directory name) to the output lists.
-                images.append(image)
-                labels.append(int(os.path.basename(root)))
+                # Read in the image file at the path os.path.join(root, file)
+                try:
+                    image = cv2.imread(os.path.join(root, file))
+                    # Resize the image to the desired size
+                    image = cv2.resize(image, (IMG_WIDTH, IMG_HEIGHT))
+                    # Append the image and its corresponding label to the output lists
+                    images.append(image)
+                    labels.append(int(os.path.basename(root)))
+                except Exception as e:
+                    print(f"Error processing image {os.path.join(root, file)}: {e}")
+                    
     return (images, labels)
 
 
