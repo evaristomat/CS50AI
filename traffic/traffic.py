@@ -84,14 +84,31 @@ def get_model():
     """
     # define the model architecture
     model = tf.keras.Sequential([
+        # Convolutional layer with 32 filters of size 3x3, using ReLU activation function
+        # Expects input image of shape (IMG_WIDTH, IMG_HEIGHT, 3)
         tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
+        
+        # Max pooling layer with pool size of 2x2 pixels
+        # Reduces the spatial size of the representation
         tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+        
+        # Another convolutional layer identical to the first one
         tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(IMG_WIDTH, IMG_HEIGHT, 3)),
+        
+        # Flattens the output of the previous layer into a 1D array
         tf.keras.layers.Flatten(),
+        
+        # Fully connected layer with 128 units, using ReLU activation function
         tf.keras.layers.Dense(128, activation='relu'),
+        
+        # Dropout layer that randomly drops out 50% of the neurons during training to prevent overfitting
         tf.keras.layers.Dropout(0.5),
+        
+        # Output layer with NUM_CATEGORIES units, using softmax activation function
+        # Produces a probability distribution over the output classes
         tf.keras.layers.Dense(NUM_CATEGORIES, activation='softmax')
     ])
+
     # compile the model with appropriate loss, optimizer, and metrics
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
